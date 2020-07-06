@@ -27,9 +27,12 @@ public class Treering : MonoBehaviour
     // @todo 定期的に逆回転させる
     void rotate()
     {
-        var angle = this.gameObject.transform.localEulerAngles;
-        angle.y += Time.deltaTime * 60.0f;
-        this.gameObject.transform.localEulerAngles = angle;
+//        var angle = this.gameObject.transform.localEulerAngles;
+//        angle.y += Time.deltaTime * 60.0f;
+//        this.gameObject.transform.localEulerAngles = angle;
+
+        Rigidbody rigidbody = GetComponent<Rigidbody>();
+        rigidbody.AddTorque(Vector3.forward * Mathf.PI * 1000, ForceMode.Acceleration);
     }
 
     // 紐づくボタンが押されていたら上向きの力を与える
