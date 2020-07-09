@@ -10,10 +10,16 @@ public class Treering : MonoBehaviour
 
     public ButtonState button;
 
+    private Rigidbody rb; // 自身のrigidBody。再利用用に参照を保存。
+
+    [SerializeField]
+    private float RotationPower = 10f; // 回転のパワー
+
     // Start is called before the first frame update
     void Start()
     {
-
+        // GetComponentは重たいので最初に呼んでおく
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -27,15 +33,17 @@ public class Treering : MonoBehaviour
     // @todo 定期的に逆回転させる
     void rotate()
     {
-//        var angle = this.gameObject.transform.localEulerAngles;
-//        angle.y += Time.deltaTime * 60.0f;
-//        this.gameObject.transform.localEulerAngles = angle;
+        /*
+        var angle = this.gameObject.transform.localEulerAngles;
+        angle.y += Time.deltaTime * 60.0f;
+        this.gameObject.transform.localEulerAngles = angle;
+        */
 
-        Rigidbody rigidbody = GetComponent<Rigidbody>();
-        rigidbody.AddTorque(Vector3.forward * Mathf.PI * 1000, ForceMode.Acceleration);
+        // とりあえず回転させとく
+        rb.AddTorque(0f, RotationPower, 0f);
     }
 
-    // 紐づくボタンが押されていたら上向きの力を与える
+    // ボタンが押されていたら一定の上向きの力を与える
     void buttonForce()
     {
         // 押されていた場合

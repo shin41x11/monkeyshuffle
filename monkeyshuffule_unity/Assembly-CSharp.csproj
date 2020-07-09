@@ -83,6 +83,7 @@
     <Compile Include="Assets\Scripts\ButtonState.cs" />
     <Compile Include="Assets\Scripts\Canon.cs" />
     <Compile Include="Assets\Scripts\Cloud.cs" />
+    <Compile Include="Assets\Scripts\SceneSettingController.cs" />
     <Compile Include="Assets\Scripts\Treering.cs" />
     <None Include="Assets\SAColliderBuilder\Readme_en.txt" />
     <None Include="Assets\Scenes\シーン役割.txt" />
