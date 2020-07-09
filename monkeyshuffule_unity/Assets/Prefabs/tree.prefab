@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7682297675008566287}
   m_Layer: 0
   m_Name: Torus
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11662,7 +11662,7 @@ GameObject:
   - component: {fileID: 1615804693963478176}
   m_Layer: 0
   m_Name: tree
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11826,6 +11826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 0}
+  RotationPower: 10
 --- !u!1 &6543281380802232535
 GameObject:
   m_ObjectHideFlags: 0
@@ -16203,7 +16204,7 @@ GameObject:
   - component: {fileID: 6543281382083814766}
   m_Layer: 0
   m_Name: Prim.00000004
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17234,7 +17235,7 @@ GameObject:
   - component: {fileID: 6543281382526105266}
   m_Layer: 0
   m_Name: mat_leaf
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18371,6 +18372,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tree_ring_close
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6af4d8eaa48d540408846ee5305c97a9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Tree
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6af4d8eaa48d540408846ee5305c97a9, type: 3}
