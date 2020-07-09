@@ -12,9 +12,6 @@ public class Treering : MonoBehaviour
 
     private Rigidbody rb; // 自身のrigidBody。再利用用に参照を保存。
 
-    [SerializeField]
-    private float RotationPower = 10f; // 回転のパワー
-
     // Start is called before the first frame update
     void Start()
     {
@@ -28,26 +25,31 @@ public class Treering : MonoBehaviour
         rotate();
         buttonForce();
     }
+    //
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.gameObject.name); // ぶつかった相手の名前を取得
+
+        // 猿にぶつかったら、猿を子オブジェクトにする
+        collision.gameObject.transform.parent = gameObject.transform;
+
+    }
 
     // 自動回転 
     // @todo 定期的に逆回転させる
     void rotate()
     {
-        /*
+        
         var angle = this.gameObject.transform.localEulerAngles;
         angle.y += Time.deltaTime * 60.0f;
         this.gameObject.transform.localEulerAngles = angle;
-        */
-
-        // とりあえず回転させとく
-        rb.AddTorque(0f, RotationPower, 0f);
     }
 
     // ボタンが押されていたら一定の上向きの力を与える
     void buttonForce()
     {
         // 押されていた場合
-        if (ReferenceEquals(button, null) == false && button.IsPressed())
+        if (ReferenceEquals(button, null) == false && button.IsPressed() || (Input.GetKey(KeyCode.Space)))
         {
            // print("test1");
             // rigidbodyを設定するとリングが落下してしまうので、一旦コメントアウト

@@ -202,7 +202,7 @@ PrefabInstance:
     - target: {fileID: 2767325528848422856, guid: 1a49ea3f20bfa674f8da2aa2ae8b19c6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 2767325528848422856, guid: 1a49ea3f20bfa674f8da2aa2ae8b19c6,
         type: 3}
@@ -799,7 +799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 183a5ce76a2f156418d676cfaf499088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timescale: 1
+  timescale: 0.2
 --- !u!4 &542139737
 Transform:
   m_ObjectHideFlags: 0
@@ -820,7 +820,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1380
+  m_Name: pb_Mesh-9330
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -35952,6 +35952,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6777507142875769181, guid: 4c905790f9cc0e141b001c095a93afbf,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7682297675008566287, guid: 4c905790f9cc0e141b001c095a93afbf,
         type: 3}
       propertyPath: m_Mesh
@@ -52493,6 +52498,5 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 487400099}
-    m_RemovedComponents:
-    - {fileID: 6777507142875769181, guid: 4c905790f9cc0e141b001c095a93afbf, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c905790f9cc0e141b001c095a93afbf, type: 3}
