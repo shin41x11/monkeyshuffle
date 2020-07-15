@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -50,15 +51,15 @@ public class Treering : MonoBehaviour
         // 押されていた場合
         if (ReferenceEquals(button, null) == false && button.IsPressed() || (Input.GetKey(KeyCode.Space)))
         {
-           // print("test1");
+            // print("test1");
             // rigidbodyを設定するとリングが落下してしまうので、一旦コメントアウト
             //this.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up);
 
-            if (this.gameObject.transform.position.y < y_init + y_add_max)
+            float y_max = y_init + y_add_max;
+            if (this.gameObject.transform.position.y < y_max)
             {
-                // y方向に+0..1
                 Vector3 pos = this.gameObject.transform.position;
-                pos.y = pos.y + 0.01f;
+                pos.y = Math.Min(pos.y + Time.deltaTime * 1f, y_max);
                 this.gameObject.transform.position = pos;
                // print("y:" + pos.y);
             }
@@ -71,7 +72,8 @@ public class Treering : MonoBehaviour
             {
                 // y方向に-0..1
                 Vector3 pos = this.gameObject.transform.position;
-                pos.y = pos.y - 0.01f;
+                pos.y = pos.y - Time.deltaTime * 1f;
+                pos.y = Math.Max(pos.y + Time.deltaTime * 1f, y_init);
                 this.gameObject.transform.position = pos;
             }
         }
