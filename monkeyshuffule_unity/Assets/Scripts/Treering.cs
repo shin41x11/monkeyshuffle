@@ -72,8 +72,7 @@ public class Treering : MonoBehaviour
             {
                 // y方向に-0..1
                 Vector3 pos = this.gameObject.transform.position;
-                pos.y = pos.y - Time.deltaTime * 1f;
-                pos.y = Math.Max(pos.y + Time.deltaTime * 1f, y_init);
+                pos.y = Math.Max(pos.y - Time.deltaTime * 1f, y_init);
                 this.gameObject.transform.position = pos;
             }
         }

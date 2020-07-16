@@ -83,7 +83,8 @@
     <Compile Include="Assets\Scripts\Canon.cs" />
     <Compile Include="Assets\Scripts\Cloud.cs" />
     <Compile Include="Assets\Scripts\Monkey.cs" />
-    <Compile Include="Assets\Scripts\MonkeyArm.cs" />
+    <Compile Include="Assets\Scripts\MonkeyArmLower.cs" />
+    <Compile Include="Assets\Scripts\MonkeyArmUpper.cs" />
     <Compile Include="Assets\Scripts\SceneSettingController.cs" />
     <Compile Include="Assets\Scripts\Treering.cs" />
     <None Include="Assets\SAColliderBuilder\Readme_en.txt" />

@@ -4,9 +4,9 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-// 猿の両手の引っかかる部分向けのスクリプト
+// 猿の両手の下側(くっつき判定部分向けのスクリプト
 // OnCollision系関数を親に渡すのみ
-public class MonkeyArm : MonoBehaviour
+public class MonkeyArmLower : MonoBehaviour
 {
 
     private Monkey parentObject;
@@ -25,19 +25,11 @@ public class MonkeyArm : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("enter:"); // ぶつかった
-        if (collider.transform.CompareTag("TreeRing"))
+        if (collider.transform.CompareTag("TreeRingUpper"))
         {
-            parentObject.relayOnTriggerEnter(collider);
+            Debug.Log("OnTriggerEnter with MonkeyArmLower and TreeRingUpper");
+            parentObject.TriggerEnterMonkeyArmLowerAndTreeRingUpper(collider);
         }
     }
 
-    void OnTriggerExit(Collider collider)
-    {
-        Debug.Log("exit:"); // ぶつかった
-        if (collider.transform.CompareTag("TreeRing"))
-        {
-            parentObject.relayOnTriggerExit(collider);
-        }
-    }
 }

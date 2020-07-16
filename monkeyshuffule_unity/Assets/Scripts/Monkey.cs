@@ -5,62 +5,68 @@ using UnityEngine;
 
 public class Monkey : MonoBehaviour
 {
-    private Dictionary<string, GameObject> collisionDict; // 衝突中オブジェクト辞書。keyにobject名(tree1等), valueにgameobjectを持つ
     private Rigidbody rb; // rigidBody。再利用用に参照を保存。
+    private bool isConnectionLock; // 接続状態を固定しているか。状態変更から1秒間は固定する。
 
     // Start is called before the first frame update
     void Start()
     {
-        collisionDict = new Dictionary<string, GameObject>();
-
         // GetComponentは重たいので最初に呼んでおく
         rb = gameObject.transform.GetComponent<Rigidbody>();
+        isConnectionLock = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (collisionDict.Count == 1)
-        {
-            if (rb.isKinematic == false)
-            {
-                Debug.Log("captured:"); // ぶつかった
-                gameObject.transform.parent = collisionDict.First().Value.transform;
-                rb.isKinematic = true;
-            }
-        }
-        else
-        {
-            if (rb.isKinematic == true)
-            {
-                Debug.Log("released:"); // 解放された
-                gameObject.transform.parent = null;
-                rb.isKinematic = false;
-            }
-        }
     }
 
-    public void relayOnTriggerEnter(Collider collider)
+    void Explosion(GameObject treeGameObject)
     {
-        string collisionObjectName = collider.gameObject.transform.parent.name;
+        float pow = 1.0f;
+        float radius = 3.0f;
 
-        if (collisionDict.ContainsKey(collisionObjectName) == false)
-        {
-            collisionDict.Add(collisionObjectName, collider.gameObject);
-            Debug.Log("Add:" + collisionObjectName); // ぶつかった相手の名前を取得
-        }
+        print("explosion!");
+        rb.AddExplosionForce(pow, treeGameObject.transform.position,radius);
     }
 
-
-
-    public void relayOnTriggerExit(Collider collider)
+    void ReleaseTree()
     {
-        string collisionObjectName = collider.gameObject.transform.parent.name;
+        gameObject.transform.parent = null;
+        rb.isKinematic = false;
+        LockConnection();
+    }
 
-        if (collisionDict.ContainsKey(collisionObjectName))
-        {
-            collisionDict.Remove(collisionObjectName);
-            Debug.Log("Remove:" + collisionObjectName); // ぶつかった相手の名前を取得
-        }
+    void ConnectTree(GameObject treeGameObject)
+    {
+        gameObject.transform.parent = treeGameObject.transform;
+        rb.isKinematic = true;
+        LockConnection();
+    }
+
+    void LockConnection()
+    {
+        isConnectionLock = true;
+        //1秒後にロックを解除する
+        StartCoroutine(WaitAndUnlockConnection());
+    }
+
+    IEnumerator WaitAndUnlockConnection()
+    {
+        yield return new WaitForSeconds(1f);
+        isConnectionLock = false;
+    }
+
+    public void TriggerEnterMonkeyArmUpperAndTreeRingLower(Collider collider)
+    {
+        if (isConnectionLock) return;
+        ReleaseTree();
+        Explosion(collider.gameObject);
+    }
+
+    public void TriggerEnterMonkeyArmLowerAndTreeRingUpper(Collider collider)
+    {
+        if (isConnectionLock) return;
+        ConnectTree(collider.gameObject);
     }
 }
