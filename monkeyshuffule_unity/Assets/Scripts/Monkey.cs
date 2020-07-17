@@ -23,11 +23,12 @@ public class Monkey : MonoBehaviour
 
     void Explosion(GameObject treeGameObject)
     {
-        float pow = 1.0f;
-        float radius = 3.0f;
+        float pow = 500f;
+        float radius = 100f;
 
         print("explosion!");
         rb.AddExplosionForce(pow, treeGameObject.transform.position,radius);
+        StartCoroutine(Spin());
     }
 
     void ReleaseTree()
@@ -55,6 +56,17 @@ public class Monkey : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         isConnectionLock = false;
+    }
+
+    IEnumerator Spin()
+    {
+        int i;
+        for (i = 0; i < 10; i++)
+        {
+            yield return new WaitForSeconds(0.1f);
+            float angle = 1f;
+            transform.Rotate(transform.forward, angle);
+        }
     }
 
     public void TriggerEnterMonkeyArmUpperAndTreeRingLower(Collider collider)
