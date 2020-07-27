@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 2659933136460750592}
   - component: {fileID: 5472838510758830654}
   - component: {fileID: 8719437573346876153}
-  - component: {fileID: 5820393636151665496}
   - component: {fileID: 7738443636131314171}
+  - component: {fileID: 4254100396982462602}
   m_Layer: 8
   m_Name: TriggerArmul
-  m_TagString: Untagged
+  m_TagString: MonkeyArmUpper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,18 +86,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5820393636151665496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 238330655854495574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1be3c94ea9d7a874fb199449619b7256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &7738443636131314171
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -114,6 +102,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4254100396982462602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238330655854495574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd364cfc444452d4c9defac8ed0e4012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &599425341436880878
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,10 +294,10 @@ GameObject:
   - component: {fileID: 5205854720164366295}
   - component: {fileID: 6179807101985532628}
   - component: {fileID: 571570916811846811}
-  - component: {fileID: 7025872065081622587}
+  - component: {fileID: 7470511750189740846}
   m_Layer: 8
   m_Name: TriggerArmlr
-  m_TagString: Untagged
+  m_TagString: MonkeyArmLower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -384,7 +384,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7025872065081622587
+--- !u!114 &7470511750189740846
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1301653673512975099}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 051b713bec9f11a41a8bd0ffd7f8c973, type: 3}
+  m_Script: {fileID: 11500000, guid: fd364cfc444452d4c9defac8ed0e4012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2119294070834159838
@@ -491,11 +491,11 @@ GameObject:
   - component: {fileID: 2635945594886260652}
   - component: {fileID: 5771902164654532806}
   - component: {fileID: 1767805448706341866}
-  - component: {fileID: 7309646434246216772}
   - component: {fileID: 8551154454719316991}
+  - component: {fileID: 5655875790223443301}
   m_Layer: 8
   m_Name: TriggerArmur
-  m_TagString: Untagged
+  m_TagString: MonkeyArmUpper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -566,18 +566,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7309646434246216772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2806031414860226996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1be3c94ea9d7a874fb199449619b7256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &8551154454719316991
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -594,6 +582,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5655875790223443301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2806031414860226996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd364cfc444452d4c9defac8ed0e4012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5196867751780072072
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,10 +978,10 @@ GameObject:
   - component: {fileID: 304736106657325133}
   - component: {fileID: 2677039665472009837}
   - component: {fileID: 2473066540613121875}
-  - component: {fileID: 8545864121951513434}
+  - component: {fileID: 4610920033772591112}
   m_Layer: 8
   m_Name: TriggerArmll
-  m_TagString: Untagged
+  m_TagString: MonkeyArmLower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1068,7 +1068,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8545864121951513434
+--- !u!114 &4610920033772591112
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1077,7 +1077,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7959275870492142968}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 051b713bec9f11a41a8bd0ffd7f8c973, type: 3}
+  m_Script: {fileID: 11500000, guid: fd364cfc444452d4c9defac8ed0e4012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8367234524789282026

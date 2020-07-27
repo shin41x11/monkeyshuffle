@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// 一定時間毎に猿を新規生成して落下させるスクリプト
+// 一定時間毎に猿を新規生成して落下させるテストシーン向けのスクリプト
 // @todo 発生座標の範囲が固定値なのが美しくないので、自身のカバーする範囲から自動取得するように変更する
 public class Cloud : MonoBehaviour
 {
