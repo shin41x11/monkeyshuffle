@@ -81,19 +81,19 @@ public class Monkey : MonoBehaviour
         // TreeRingの子オブジェクトにする(接触部のシリンダーの子オブジェクトにすると、計算が煩雑になる)
         rb.transform.parent = treeGameObject.transform.parent.gameObject.transform.parent.gameObject.transform;
 
-        float fixed_rad = 1.3f;
-        float rad = (new Vector3(0, 0, 0) - new Vector3(rb.transform.localPosition.x, 0, rb.transform.localPosition.z)).magnitude; // scale1の際の木と猿の距離
+        float fixed_rad = 1.3f;// scale1の際の木と猿の距離
+        float rad = (new Vector3(0, 0, 0) - new Vector3(rb.transform.localPosition.x, 0, rb.transform.localPosition.z)).magnitude; 
         print("before rad:" + rad + " rot:" + rb.transform.localRotation.eulerAngles + " pos:" + rb.transform.localPosition);
 
-        float rotY = Vector3.Angle(rb.transform.forward, new Vector3(rb.transform.localPosition.x, 0, rb.transform.localPosition.z));
+//        float rotY = Vector3.Angle(rb.transform.localrd, new Vector3(rb.transform.localPosition.x, 0, rb.transform.localPosition.z));
 
         //float rotY = Mathf.Asin(rb.transform.localPosition.z / rad) * 180 / (float)System.Math.PI ;
-        rb.transform.localRotation = Quaternion.Euler(0, rotY, 0);
+//        rb.transform.localRotation = Quaternion.Euler(0, rotY, 0);
         rb.transform.localPosition = new Vector3(rb.transform.localPosition.x / rad * fixed_rad, -0.8f, rb.transform.localPosition.z / rad * fixed_rad);
         
 
         print("after rot:" + rb.transform.localRotation.eulerAngles + " pos:" + rb.transform.localPosition);
-        print("rotY" + rotY);
+//        print("rotY" + rotY);
 
         rb.isKinematic = true;
         LockConnection();
@@ -142,9 +142,9 @@ public class Monkey : MonoBehaviour
     /// <param name="collider"></param>
     public void TriggerEnterMonkeyArmUpperAndTreeRingLower(Collider collider)
     {
+        if (isConnectionLock) return;
         Debug.Log("OnTriggerEnter " + gameObject.name + "  " + getOriginGameobject(collider.gameObject).name + " MonkeyArmUpper ");
         Debug.Log("Monkey pos:" + rb.transform.position  + "rotation:" + rb.transform.rotation);
-        if (isConnectionLock) return;
         ReleaseTree();
         Explosion(collider.gameObject);
     }
@@ -155,9 +155,9 @@ public class Monkey : MonoBehaviour
     /// </summary>
     public void TriggerEnterMonkeyArmLowerAndTreeRingUpper(Collider collider, GameObject connectArm, Vector3 connectPoint)
     {
+        if (isConnectionLock) return;
         Debug.Log("OnTriggerEnter " + rb.name + "  " + getOriginGameobject(collider.gameObject).name + " MonkeyArmUpper and TreeRingLower");
         Debug.Log("Monkey pos:" + rb.transform.position + "rotation:" + rb.transform.rotation.eulerAngles);
-        if (isConnectionLock) return;
         ConnectTree(collider.gameObject, connectArm, connectPoint);
     }
 
