@@ -7,7 +7,7 @@ public class Treering : MonoBehaviour
 {
     private float y_add_max = 1f; // 延びうる最大値。
     private float y_init;
-    private float rotationPower = 10000f;
+    private float rotationPower = 10f;
 
     public ButtonState button;
 
