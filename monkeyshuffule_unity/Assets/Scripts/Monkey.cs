@@ -36,6 +36,7 @@ public class Monkey : MonoBehaviour
     public void disappear()
     {
         branch.increaseWaitingMonkey();
+        Destroy(gameObject);
     }
 
     /// <summary>
@@ -174,5 +175,15 @@ public class Monkey : MonoBehaviour
         }
 
         return myGameObject;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+ //       print("oncollisionenter:" + collision.gameObject.tag);
+        // 地面に落下した猿の消失処理
+        if (collision.gameObject.transform.CompareTag("Ground"))
+        {
+            disappear();
+        }
     }
 }

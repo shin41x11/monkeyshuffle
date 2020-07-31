@@ -51,10 +51,6 @@ public class MonkeyArm : MonoBehaviour
                 parentObject.TriggerEnterMonkeyArmLowerAndTreeRingUpper(collider, gameObject, connectPoint);
             }
         }
-        else
-        {
-            Debug.Log("OnTriggerEnter myTag is wrong");
-        }
     }
 
 

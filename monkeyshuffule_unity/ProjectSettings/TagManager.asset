@@ -6,8 +6,7 @@ TagManager:
   tags:
   - TreeRingUpper
   - TreeRingLower
-  - MonkeyArmUpper
-  - MonkeyArmLower
+  - Ground
   layers:
   - Default
   - TransparentFX

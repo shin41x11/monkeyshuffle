@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // 猿が降りてくる枝
 public class Branch : MonoBehaviour
@@ -9,12 +10,16 @@ public class Branch : MonoBehaviour
     public ButtonState button;
     public GameObject prefab_monkey;
     private int waitingMonkey; // 枝から降りれる猿
-    private int waitingMonkeMax = 5; //枝から降りれる猿の最大数
+    private int waitingMonkeMax = 10; //枝から降りれる猿の最大数
+
+    private Text waitingMonkeyText;
 
     // Start is called before the first frame update
     void Start()
     {
         waitingMonkey = waitingMonkeMax;
+        waitingMonkeyText = GameObject.Find("TextWaitingMonkey").GetComponent<Text>();
+        waitingMonkeyText.text = "×" + waitingMonkey;
     }
 
     // Update is called once per frame
@@ -31,6 +36,7 @@ public class Branch : MonoBehaviour
             {
                 appearMonkey();
                 waitingMonkey--;
+                waitingMonkeyText.text = "×" + waitingMonkey;
             }
         }
     }
@@ -57,6 +63,7 @@ public class Branch : MonoBehaviour
     public void increaseWaitingMonkey()
     {
         waitingMonkey++;
+        waitingMonkeyText.text = "×" + waitingMonkey;
     }
 
 }
