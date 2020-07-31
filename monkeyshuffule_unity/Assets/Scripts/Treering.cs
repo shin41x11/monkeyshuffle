@@ -7,7 +7,6 @@ public class Treering : MonoBehaviour
 {
     private float y_add_max = 1f; // 延びうる最大値。
     private float y_init;
-    private float rotationPower = 10f;
 
     public ButtonState button;
 
@@ -38,14 +37,12 @@ public class Treering : MonoBehaviour
     {
 
         // 物理で回す版
-        rb.AddTorque(0f, rotationPower, 0f);
+        //rb.AddTorque(0f, RotationPower, 0f);
 
         // 角度をスクリプトで変更する版
-        /*
         var angle = this.gameObject.transform.localEulerAngles;
         angle.y += Time.deltaTime * 60.0f;
         this.gameObject.transform.localEulerAngles = angle;
-        */
     }
 
     // ボタンが押されていたら一定の上向きの力を与える
