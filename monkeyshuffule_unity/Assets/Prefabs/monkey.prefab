@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2659933136460750592
 Transform:
   m_ObjectHideFlags: 0
@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 6179807101985532628}
   - component: {fileID: 7470511750189740846}
   m_Layer: 8
-  m_Name: TriggerArmlr
+  m_Name: Armlr
   m_TagString: MonkeyArmLower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -292,8 +292,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1301653673512975099}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.4, y: 0.9, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.2, z: 0.1}
+  m_LocalPosition: {x: -0.4, y: 0.93, z: 0}
+  m_LocalScale: {x: 0.05, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 2767325528848422856}
   m_RootOrder: 8
@@ -344,7 +344,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1301653673512975099}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 7854431bf45ea0c4f9740a5a30079ee9, type: 2}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
@@ -464,7 +464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2635945594886260652
 Transform:
   m_ObjectHideFlags: 0
@@ -653,8 +653,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5209266994853859454}
   m_LocalRotation: {x: 0.019747097, y: 0.0015541288, z: -0.07844363, w: 0.9967218}
-  m_LocalPosition: {x: -0.47, y: 0.9, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.15, z: 0.05}
+  m_LocalPosition: {x: -0.482, y: 0.85, z: -0}
+  m_LocalScale: {x: 0.05, y: 0.3, z: 0.05}
   m_Children: []
   m_Father: {fileID: 2767325528848422856}
   m_RootOrder: 0
@@ -811,7 +811,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5641472157050267455}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.0000001
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -857,8 +857,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7534354540948517324}
   m_LocalRotation: {x: 0.019747097, y: -0.0015541305, z: 0.07844372, w: 0.99672174}
-  m_LocalPosition: {x: 0.47, y: 0.9, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.15, z: 0.05}
+  m_LocalPosition: {x: 0.483, y: 0.85, z: -0.003}
+  m_LocalScale: {x: 0.05, y: 0.3, z: 0.05}
   m_Children: []
   m_Father: {fileID: 2767325528848422856}
   m_RootOrder: 3
@@ -928,7 +928,7 @@ GameObject:
   - component: {fileID: 2677039665472009837}
   - component: {fileID: 4610920033772591112}
   m_Layer: 8
-  m_Name: TriggerArmll
+  m_Name: Armll
   m_TagString: MonkeyArmLower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -942,8 +942,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7959275870492142968}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.4, y: 0.9, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.2, z: 0.1}
+  m_LocalPosition: {x: 0.4, y: 0.93, z: 0}
+  m_LocalScale: {x: 0.05, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 2767325528848422856}
   m_RootOrder: 7
@@ -966,7 +966,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 59e4faf24927edf4a82f463ad16f1c37, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -994,7 +994,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7959275870492142968}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 7854431bf45ea0c4f9740a5a30079ee9, type: 2}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
