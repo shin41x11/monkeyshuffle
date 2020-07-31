@@ -18,7 +18,7 @@ public class Branch : MonoBehaviour
     void Start()
     {
         waitingMonkey = waitingMonkeMax;
-        waitingMonkeyText = GameObject.Find("TextWaitingMonkey").GetComponent<Text>();
+        waitingMonkeyText = GameObject.Find("Player1WaitingCounter").GetComponent<Text>();
         waitingMonkeyText.text = "×" + waitingMonkey;
     }
 
