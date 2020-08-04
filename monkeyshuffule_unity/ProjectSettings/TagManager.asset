@@ -7,6 +7,11 @@ TagManager:
   - TreeRingUpper
   - TreeRingLower
   - Ground
+  - MonkeyArmUpper
+  - MonkeyArmLower
+  - GoalTree
+  - TreeRingPhantom
+  - GoalPond
   layers:
   - Default
   - TransparentFX

@@ -18,7 +18,6 @@ public class MonkeyArm : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-//        rb = gameObject.transform.GetComponent<Rigidbody>();
         parentObject = gameObject.transform.parent.gameObject.GetComponent<Monkey>();
     }
 
@@ -35,10 +34,7 @@ public class MonkeyArm : MonoBehaviour
         {
             if (collider.transform.CompareTag("TreeRingLower"))
             {
-
-
-
-                parentObject.TriggerEnterMonkeyArmUpperAndTreeRingLower(collider);
+                parentObject.TriggerEnterMonkeyArmUpperAndTreeRingLower(collider.gameObject);
             }
         }
 
@@ -47,8 +43,7 @@ public class MonkeyArm : MonoBehaviour
         {
             if (collider.transform.CompareTag("TreeRingUpper"))
             {
-                Vector3 connectPoint = collider.ClosestPoint(transform.position);
-                parentObject.TriggerEnterMonkeyArmLowerAndTreeRingUpper(collider, gameObject, connectPoint);
+                parentObject.TriggerEnterMonkeyArmLowerAndTreeRingUpper(collider.gameObject);
             }
         }
     }

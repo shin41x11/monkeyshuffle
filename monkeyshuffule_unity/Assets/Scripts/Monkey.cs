@@ -11,6 +11,7 @@ public class Monkey : MonoBehaviour
 {    private Rigidbody rb; // rigidBody。再利用用に参照を保存。
     private bool isConnectionLock; // 接続状態を固定しているか。状態変更から1秒間は固定する。
     private Branch branch; // 発射元の枝
+    private GoalTree goalTree; 
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,8 @@ public class Monkey : MonoBehaviour
         // GetComponentは重たいので最初に呼んでおく
         rb = gameObject.transform.GetComponent<Rigidbody>();
         isConnectionLock = false;
+
+        goalTree = GameObject.Find("treeGoal").GetComponent<GoalTree>();
     }
 
     // Update is called once per frame
@@ -31,7 +34,7 @@ public class Monkey : MonoBehaviour
     }
 
     /// <summary>
-    /// 枝の待機猿を増やす
+    /// 猿を削除して、枝の待機に戻す
     /// </summary>
     public void disappear()
     {
@@ -68,31 +71,18 @@ public class Monkey : MonoBehaviour
     /// 猿と木の親子関係を設定する
     /// </summary>
     /// <param name="treeGameObject"></param>
-    void ConnectTree(GameObject treeGameObject, GameObject connectArm, Vector3 connectPoint)
+    void ConnectTreeRing(GameObject treeGameObject)
     {
-        // 接触した腕が、木の中心を向く
-        //        Rigidbody connectArmRigidbody = connectArm.transform.GetComponent<Rigidbody>();
-        //        connectArmRigidbody.transform.LookAt(treeGameObject.transform.parent.gameObject.transform.position);
-
-        print("connectPoint global:" + connectPoint + " local:" + (connectPoint - treeGameObject.transform.position));
-
-
-
-
         // TreeRingの子オブジェクトにする(接触部のシリンダーの子オブジェクトにすると、計算が煩雑になる)
         rb.transform.parent = treeGameObject.transform.parent.gameObject.transform.parent.gameObject.transform;
 
+        // 腕の中心でぶら下がるように微調整する
         float fixed_rad = 1.3f;// scale1の際の木と猿の距離
         float rad = (new Vector3(0, 0, 0) - new Vector3(rb.transform.localPosition.x, 0, rb.transform.localPosition.z)).magnitude; 
         print("before rad:" + rad + " rot:" + rb.transform.localRotation.eulerAngles + " pos:" + rb.transform.localPosition);
 
-//        float rotY = Vector3.Angle(rb.transform.localrd, new Vector3(rb.transform.localPosition.x, 0, rb.transform.localPosition.z));
-
-        //float rotY = Mathf.Asin(rb.transform.localPosition.z / rad) * 180 / (float)System.Math.PI ;
-//        rb.transform.localRotation = Quaternion.Euler(0, rotY, 0);
         rb.transform.localPosition = new Vector3(rb.transform.localPosition.x / rad * fixed_rad, -0.8f, rb.transform.localPosition.z / rad * fixed_rad);
         
-
         print("after rot:" + rb.transform.localRotation.eulerAngles + " pos:" + rb.transform.localPosition);
 //        print("rotY" + rotY);
 
@@ -137,29 +127,52 @@ public class Monkey : MonoBehaviour
     }
 
     /// <summary>
+    /// ゴールの木にぶつかった際にゴールの木の子オブジェクトにする処理
+    /// </summary>
+    private void connectTreeGoal(GameObject treeGameObject)
+    {
+        rb.transform.parent = treeGameObject.transform;
+    }
+
+    private void goalPond()
+    {
+        
+        goalTree.goal();
+        Destroy(gameObject);
+    }
+
+    /// <summary>
     /// 「猿の腕の上」と「木の輪の下」の接触時に呼ばれるトリガーを受ける関数
     ///  猿と木の親子関係を解除し、猿を吹き飛ばす
     /// </summary>
     /// <param name="collider"></param>
-    public void TriggerEnterMonkeyArmUpperAndTreeRingLower(Collider collider)
+    public void TriggerEnterMonkeyArmUpperAndTreeRingLower(GameObject colliderGameObject)
     {
         if (isConnectionLock) return;
-        Debug.Log("OnTriggerEnter " + gameObject.name + "  " + getOriginGameobject(collider.gameObject).name + " MonkeyArmUpper ");
+
+        // GoalTreeの子オブジェクトだったら何もしない
+        if (gameObject.transform.parent && gameObject.transform.parent.CompareTag("GoalTree")) return;
+
+        Debug.Log("OnTriggerEnter " + gameObject.name + "  " + getOriginGameobject(colliderGameObject).name + " MonkeyArmUpper ");
         Debug.Log("Monkey pos:" + rb.transform.position  + "rotation:" + rb.transform.rotation);
         ReleaseTree();
-        Explosion(collider.gameObject);
+        Explosion(colliderGameObject);
     }
 
     /// <summary>
     /// 「猿の腕の下」と「木の輪の腕」の接触時に呼ばれるトリガーを受ける関数
     /// 猿を木の子オブジェクトに設定する
     /// </summary>
-    public void TriggerEnterMonkeyArmLowerAndTreeRingUpper(Collider collider, GameObject connectArm, Vector3 connectPoint)
+    public void TriggerEnterMonkeyArmLowerAndTreeRingUpper(GameObject colliderGameObject)
     {
         if (isConnectionLock) return;
-        Debug.Log("OnTriggerEnter " + rb.name + "  " + getOriginGameobject(collider.gameObject).name + " MonkeyArmUpper and TreeRingLower");
+
+        // GoalTreeの子オブジェクトだったら何もしない
+        if (gameObject.transform.parent && gameObject.transform.parent.CompareTag("GoalTree")) return;
+
+        Debug.Log("OnTriggerEnter " + rb.name + "  " + getOriginGameobject(colliderGameObject).name + " MonkeyArmUpper and TreeRingLower");
         Debug.Log("Monkey pos:" + rb.transform.position + "rotation:" + rb.transform.rotation.eulerAngles);
-        ConnectTree(collider.gameObject, connectArm, connectPoint);
+        ConnectTreeRing(colliderGameObject);
     }
 
     /// <summary>
@@ -184,6 +197,30 @@ public class Monkey : MonoBehaviour
         if (collision.gameObject.transform.CompareTag("Ground"))
         {
             disappear();
+        }
+
+
+
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        // ゴールの木に触れた際の親オブジェクト変更処理
+        if (collider.gameObject.transform.CompareTag("GoalTree"))
+        {
+            connectTreeGoal(collider.gameObject);
+        }
+
+        // 欠けている木の輪に触れた際の親オブジェクト解除処理
+        if (collider.gameObject.transform.CompareTag("TreeRingPhantom"))
+        {
+            ReleaseTree();
+        }
+
+        // ゴールの池に落下した猿の消失処理
+        if (collider.gameObject.transform.CompareTag("GoalPond"))
+        {
+            goalPond();
         }
     }
 }
