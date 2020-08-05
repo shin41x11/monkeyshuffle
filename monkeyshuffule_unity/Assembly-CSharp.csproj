@@ -78,13 +78,13 @@
     <Compile Include="Assets\SAColliderBuilder\Scripts\SABoneColliderChild.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\SAMeshCollider.cs" />
     <Compile Include="Assets\SAColliderBuilder\Scripts\SAMeshColliderBuilder.cs" />
-    <Compile Include="Assets\Scripts\Branch.cs" />
     <Compile Include="Assets\Scripts\ButtonState.cs" />
     <Compile Include="Assets\Scripts\Canon.cs" />
     <Compile Include="Assets\Scripts\Cloud.cs" />
     <Compile Include="Assets\Scripts\GoalTree.cs" />
     <Compile Include="Assets\Scripts\Monkey.cs" />
     <Compile Include="Assets\Scripts\MonkeyArm.cs" />
+    <Compile Include="Assets\Scripts\MonkeyManager.cs" />
     <Compile Include="Assets\Scripts\SceneSettingController.cs" />
     <Compile Include="Assets\Scripts\Treering.cs" />
     <None Include="Assets\SAColliderBuilder\Readme_en.txt" />

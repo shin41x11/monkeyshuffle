@@ -7,16 +7,14 @@ using UnityEngine.UI;
 public class GoalTree : MonoBehaviour
 {
 
-    private int goalMonkey; //
 
-    private Text goalMonkeyText;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        goalMonkey = 0;
-        goalMonkeyText = GameObject.Find("Player1GoalCounter").GetComponent<Text>();
-        goalMonkeyText.text = "×" + goalMonkey;
+
     }
 
     // Update is called once per frame
@@ -24,15 +22,7 @@ public class GoalTree : MonoBehaviour
     { 
     }
 
-    /// <summary>
-    /// 待機状態の猿をゲームに出現させる
-    /// </summary>
-    public void goal()
-    {
-        goalMonkey++;
-        goalMonkeyText.text = "×" + goalMonkey;
 
-    }
 
 
 }

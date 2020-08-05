@@ -2,60 +2,116 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
-/// 猿
+/// 猿を管理するマネージャー。プレイヤー毎に所持する。
+/// プレイヤーに紐づくオブジェクトは生成時に、このスクリプトへの参照を設定される。
+/// 名前はMonkeyManger1 or MonkeyManager2とすることで、以下のようにアクセスする
+/// monkeyManger = GameObject.Find("MonkeyManager" + playerNo);
+/// 
 /// </summary>
-public class Monkey : MonoBehaviour
+public class MonkeyManager : MonoBehaviour
 
-{    private Rigidbody rb; // rigidBody。再利用用に参照を保存。
-    private bool isConnectionLock; // 接続状態を固定しているか。状態変更から1秒間は固定する。
-    private MonkeyManager monkeyManager;
-    public int playerNo;// プレイヤー番号(1 or 2)
+{
+    public int playerNo; // プレイヤー番号( 1 or 2)
+    private int waitingMonkey; // 枝から降りれる猿
+    private int waitingMonkeMax = 10; //枝から降りれる猿の最大数
+    private Text waitingMonkeyText;
+
+    private int goalMonkey; //
+    private Text goalMonkeyText;
+
+    public Monkey monkeyPrefab;
+    private Transform branch; // 猿の生成ポイントを示す
+
+    private ButtonState pickupButton;
 
     // Start is called before the first frame update
     void Start()
     {
-        // GetComponentは重たいので最初に呼んでおく
-        rb = gameObject.transform.GetComponent<Rigidbody>();
-        isConnectionLock = false;
+
+        branch = GameObject.Find("Branch" + playerNo).GetComponent<Transform>();
+        pickupButton = GameObject.Find("PickupButton" + playerNo).GetComponent<ButtonState>();
+
+        waitingMonkey = waitingMonkeMax;
+
+        waitingMonkeyText = GameObject.Find("WaitingCounter" + playerNo).GetComponent<Text>();
+        waitingMonkeyText.text = "×" + waitingMonkey;
+
+        goalMonkey = 0;
+        goalMonkeyText = GameObject.Find("GoalCounter" + playerNo).GetComponent<Text>();
+        goalMonkeyText.text = "×" + goalMonkey;
     }
 
     // Update is called once per frame
     void Update()
     {
+        listenPickupButton();
     }
 
+    void listenPickupButton()
+    {
+        if (ReferenceEquals(pickupButton, null) == false && pickupButton.IsDown())
+        {
+            if (waitingMonkey > 0)
+            {
+                appearMonkey();
+                waitingMonkey--;
+                waitingMonkeyText.text = "×" + waitingMonkey;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 待機状態の猿をゲームに出現させる
+    /// </summary>
+    void appearMonkey()
+    {
+        Monkey new_monkey = Instantiate(monkeyPrefab) as Monkey;
+
+        Monkey monkey = new_monkey.GetComponent<Monkey>();
+        monkey.setMonkeyManager(this);
+        monkey.name = "monkey" + (waitingMonkeMax - waitingMonkey + 1);
+
+        // y方向に+1ずらした位置に猿を生成する
+        Vector3 pos = branch.position;
+        pos.y = pos.y + 1f;
+        new_monkey.transform.position = pos;
+
+    }
+
+    public void increaseWaitingMonkey()
+    {
+        waitingMonkey++;
+        waitingMonkeyText.text = "×" + waitingMonkey;
+    }
 
     /// <summary>
     /// 猿を削除して、枝の待機に戻す
     /// </summary>
     public void disappear()
     {
-        monkeyManager.increaseWaitingMonkey();
+//        branch.increaseWaitingMonkey();
         Destroy(gameObject);
     }
 
-    public void setMonkeyManager(MonkeyManager val)
-    {
-        monkeyManager = val;
-    }
-
     /// <summary>
-    /// 猿が木の輪の下側に接触した際の弾き飛ばす
+    /// ゴールに接触した猿のカウンタを反映する
     /// </summary>
-    /// <param name="treeGameObject">接触した木の輪。木の輪の中心から爆発による力を発生させる</param>
-    // 猿が木の輪の下側に接触した際の弾き飛ばす
-    void Explosion(GameObject treeGameObject)
+    public void goal()
     {
-        float pow = 500f;
-        float radius = 100f;
+        goalMonkey++;
+        goalMonkeyText.text = "×" + goalMonkey;
 
-        print("explosion!" + gameObject.name);
-        rb.AddExplosionForce(pow, treeGameObject.transform.position,radius);
-        StartCoroutine(Spin());
     }
 
+    public int getWaitingMonkey()
+    {
+        return waitingMonkey;
+    }
+
+    /*
     /// <summary>
     /// 猿と木の親子関係を解除する
     /// </summary>
@@ -136,7 +192,7 @@ public class Monkey : MonoBehaviour
     private void goalPond()
     {
         
-        monkeyManager.goal();
+        goalTree.goal();
         Destroy(gameObject);
     }
 
@@ -222,4 +278,5 @@ public class Monkey : MonoBehaviour
             goalPond();
         }
     }
+    */
 }
