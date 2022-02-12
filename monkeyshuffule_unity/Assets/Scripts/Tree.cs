@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Treering : MonoBehaviour
+public class Tree : MonoBehaviour
 {
     private float y_add_max = 1f; // 延びうる最大値。
     private float y_init;
