@@ -11,6 +11,7 @@ public class Monkey : MonoBehaviour
 {    private Rigidbody rb; // rigidBody。再利用用に参照を保存。
     private bool isConnectionLock; // 接続状態を固定しているか。状態変更から1秒間は固定する。
     private MonkeyManager monkeyManager;
+
     public int playerNo;// プレイヤー番号(1 or 2)
 
     // Start is called before the first frame update
@@ -33,6 +34,7 @@ public class Monkey : MonoBehaviour
     public void disappear()
     {
         monkeyManager.increaseWaitingMonkey();
+        monkeyManager.playSound("monkey_disappear");
         Destroy(gameObject);
     }
 
@@ -87,6 +89,8 @@ public class Monkey : MonoBehaviour
 
         rb.isKinematic = true;
         LockConnection();
+
+        monkeyManager.playSound("monkey_move");
     }
 
     /// <summary>
@@ -197,9 +201,6 @@ public class Monkey : MonoBehaviour
         {
             disappear();
         }
-
-
-
     }
 
     private void OnTriggerEnter(Collider collider)
