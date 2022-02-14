@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,21 +27,17 @@ public class Tree : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rotate();
+//        rotate();
         buttonForce();
     }
 
-    // 自動回転 
-    // @todo 定期的に逆回転させる
-    void rotate()
+    // 自動回転 (60fなので6sで１周。5sで逆回転させる。TimerManagerから呼ばれる)
+    // direction は1(時計回り方向) or -1(反時計回り方向)
+    public void rotate(int direction)
     {
-
-        // 物理で回す版
-        //rb.AddTorque(0f, RotationPower, 0f);
-
-        // 角度をスクリプトで変更する版
+        // 角度をスクリプトで変更する
         var angle = this.gameObject.transform.localEulerAngles;
-        angle.y += Time.deltaTime * 60.0f;
+        angle.y += Time.deltaTime * 60.0f * direction;
         this.gameObject.transform.localEulerAngles = angle;
     }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 調整・デバッグ用のパラメータ設定を行うマネージャ
 public class SceneSettingController : MonoBehaviour
 {
 
