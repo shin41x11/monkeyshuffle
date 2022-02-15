@@ -14,7 +14,12 @@ using UnityEngine.UI;
 public class MonkeyManager : MonoBehaviour
 
 {
-    public int playerNo; // プレイヤー番号( 1 or 2)
+    [SerializeField] private  int playerNo; // プレイヤー番号( 1 or 2)
+
+    [SerializeField] private  Monkey monkeyPrefab;
+    [SerializeField] private Material monkeyMaterial;
+    [SerializeField] private SoundManager soundManager;
+
     private int waitingMonkey; // 枝から降りれる猿
     private int waitingMonkeMax = 10; //枝から降りれる猿の最大数
     private Text waitingMonkeyText;
@@ -22,12 +27,12 @@ public class MonkeyManager : MonoBehaviour
     private int goalMonkey; //
     private Text goalMonkeyText;
 
-    public Monkey monkeyPrefab;
+
     private Transform branch; // 猿の生成ポイントを示す
 
     private ButtonState pickupButton;
 
-    [SerializeField] private SoundManager soundManager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -75,6 +80,7 @@ public class MonkeyManager : MonoBehaviour
         Monkey monkey = new_monkey.GetComponent<Monkey>();
         monkey.setMonkeyManager(this);
         monkey.name = "monkey" + (waitingMonkeMax - waitingMonkey + 1);
+        new_monkey.GetComponent<Renderer>().material.color = monkeyMaterial.color;
 
         // y方向に+1ずらした位置に猿を生成する
         Vector3 pos = branch.position;

@@ -45,6 +45,7 @@
      <Compile Include="Assets\Scripts\TimerManager.cs" />
      <Compile Include="Assets\Scripts\MonkeyArm.cs" />
      <Compile Include="Assets\SAColliderBuilder\Scripts\SAMeshCollider.cs" />
+     <Compile Include="Assets\Low Poly Fruits\resources\fruits_tester.cs" />
      <Compile Include="Assets\Joystick Pack\Examples\JoystickSetterExample.cs" />
      <Compile Include="Assets\SAColliderBuilder\Scripts\Internal\SAColliderBuilderCommon.cs" />
      <Compile Include="Assets\SAColliderBuilder\Scripts\SABoneCollider.cs" />
@@ -741,14 +742,14 @@
     <Reference Include="Unity.PlasticSCM.Editor">
         <HintPath>D:\git\monkeyshuffle\monkeyshuffule_unity\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ProGrids">
+        <HintPath>D:\git\monkeyshuffle\monkeyshuffule_unity\Library\ScriptAssemblies\Unity.ProGrids.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.ProGrids.Editor">
         <HintPath>D:\git\monkeyshuffle\monkeyshuffule_unity\Library\ScriptAssemblies\Unity.ProGrids.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
         <HintPath>D:\git\monkeyshuffle\monkeyshuffule_unity\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProGrids">
-        <HintPath>D:\git\monkeyshuffle\monkeyshuffule_unity\Library\ScriptAssemblies\Unity.ProGrids.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
