@@ -173,7 +173,7 @@ public class Monkey : MonoBehaviour
         // GoalTreeの子オブジェクトだったら何もしない
         if (gameObject.transform.parent && gameObject.transform.parent.CompareTag("GoalTree")) return;
 
-        Debug.Log("OnTriggerEnter " + rb.name + "  " + getOriginGameobject(colliderGameObject).name + " MonkeyArmUpper and TreeRingLower");
+        Debug.Log("OnTriggerEnter " + rb.name + "  " + getOriginGameobject(colliderGameObject).name + " MonkeyArmLower and TreeRingUpper");
         Debug.Log("Monkey pos:" + rb.transform.position + "rotation:" + rb.transform.rotation.eulerAngles);
         ConnectTreeRing(colliderGameObject);
     }
@@ -193,13 +193,20 @@ public class Monkey : MonoBehaviour
         return myGameObject;
     }
 
+
     private void OnCollisionEnter(Collision collision)
     {
- //       print("oncollisionenter:" + collision.gameObject.tag);
+        print("oncollisionenter:" + collision.gameObject.tag);
         // 地面に落下した猿の消失処理
         if (collision.gameObject.transform.CompareTag("Ground"))
         {
-            disappear();
+            // 移動を停止する
+            rb.velocity = Vector3.zero;
+//
+//            rb.angularVelocity = new Vector3(0,0,1) * Mathf.PI;
+//            rb.isKinematic = true;
+
+            disappear(); //消失処理
         }
     }
 
